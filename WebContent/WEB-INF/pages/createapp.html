@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>Applications list</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="css/style_1.0.css" />
+</head>
+
+<body>
+	<header id="header">
+		<p>Applications Manager</p>
+	</header>
+
+	<div id="container">
+
+		<main id="center" class="column">
+
+		<h1>New application</h1>
+
+		<form action="#" th:action="@{/createapp}" method="post">
+			<div>
+				<b>Name:</b>
+			</div>
+			<div>
+				<input type="text" name="name" />
+			</div>
+			<div>
+				<b>Content:</b>
+			</div>
+			<div>
+				<textarea name="content"></textarea>
+			</div>
+			<button type="submit" style="margin-top: 10px;">Create</button>
+		</form>
+		</main>
+
+		<div th:include="leftcolumn :: leftcolumn"></div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>Applications list</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="css/style_1.0.css" />
+</head>
+
+<body>
+	<header id="header">
+		<h1>Applications Manager</h1>
+	</header>
+
+	<div id="container">
+
+		<main id="center" class="column">
+
+		<h1>Edit application</h1>
+
+		<div>
+			<b>Name:</b> <span th:text="${applicationDTO.name}"></span>
+		</div>
+
+		<form action="#" th:action="@{/editapp}" method="post">
+			<div>
+				<b>Content:</b>
+			</div>
+			<div>
+				<textarea name="content" th:text="${applicationDTO.content}"></textarea>
+			</div>
+			<input type="hidden" name="id" th:value="${applicationDTO.id}" />
+			<button type="submit" style="margin-top: 10px;">Save</button>
+		</form>
+		</main>
+
+		<div th:include="leftcolumn :: leftcolumn"></div>
+
+	</div>
+
+</body>
+</html>
