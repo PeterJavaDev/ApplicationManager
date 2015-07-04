@@ -24,6 +24,13 @@ public class ApplicationService {
 	private final static int PUBLISHED = 4;
 	private final static int DELETED = 5;
 	private final static int REJECTED = 6;
+	
+	private final static String CREATED_TEXT = "created";
+	private final static String VERIFIED_TEXT = "verified";
+	private final static String ACCEPTED_TEXT = "accepted";
+	private final static String PUBLISHED_TEXT = "published";
+	private final static String DELETED_TEXT = "deleted";
+	private final static String REJECTED_TEXT = "rejected";
 
 	public List<ApplicationListItemDTO> getFilteredList(final int pageNumber,
 			final String name, final Integer state) throws SystemException {
@@ -43,6 +50,27 @@ public class ApplicationService {
 			applicationListItemDTO = new ApplicationListItemDTO();
 			applicationListItemDTO.setId(applicationEntity.getId());
 			applicationListItemDTO.setName(applicationEntity.getName());
+			applicationListItemDTO.setState(applicationEntity.getState());
+			switch(applicationEntity.getState()) {
+				case CREATED:
+					applicationListItemDTO.setStateText(CREATED_TEXT);
+					break;
+				case VERIFIED:
+					applicationListItemDTO.setStateText(VERIFIED_TEXT);
+					break;
+				case ACCEPTED:
+					applicationListItemDTO.setStateText(ACCEPTED_TEXT);
+					break;
+				case PUBLISHED:
+					applicationListItemDTO.setStateText(PUBLISHED_TEXT);
+					break;
+				case DELETED:
+					applicationListItemDTO.setStateText(DELETED_TEXT);
+					break;
+				case REJECTED:
+					applicationListItemDTO.setStateText(REJECTED_TEXT);
+					break;
+			}
 			applicationListItemDTO.setState(applicationEntity.getState());
 			applicationListItemDTO.setModifityDate(applicationEntity
 					.getModifityDate());
@@ -71,8 +99,9 @@ public class ApplicationService {
 	}
 	
 	public boolean canVerify(final int id) throws SystemException {
+		System.out.println("---------------------------------aaa id " + id);
 		ApplicationDTO applicationDTO = getApplication(id);
-		return canVerify(applicationDTO.getState());
+		return isVerifyStatus(applicationDTO.getState());
 	}
 	
 	private boolean isVerifyStatus(final int state) {
@@ -204,6 +233,7 @@ public class ApplicationService {
 	}
 
 	public ApplicationDTO getApplication(final int id) throws SystemException {
+		System.out.println("--------------------------------------id " + id);
 		ApplicationDAO applicationDAO = new ApplicationDAO();
 		ApplicationEntity applicationEntity = null;
 		try {

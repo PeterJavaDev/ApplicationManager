@@ -54,7 +54,7 @@
 			</tr>
 			<tr th:each="appItem : ${applicationListItemList}">
 				<td th:text="${appItem.name}">-</td>
-				<td th:text="${appItem.state}">-</td>
+				<td th:text="${appItem.stateText}">-</td>
 				<td th:text="${appItem.modifityDate}">-</td>
 				<td><span th:if="${appItem.canVerify}"><a th:href="@{|verifyapp?id=${appItem.id}|}">Verify</a></span></td>
 				<td><span th:if="${appItem.canPublish}"><a th:href="@{|editappform?id=${appItem.id}|}">Publish</a></span></td>

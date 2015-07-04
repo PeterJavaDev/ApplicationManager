@@ -31,7 +31,7 @@ public class PublishAppController extends SafeController {
 		} else {
 			throw new ValidateException("\"id\" parameter must be greater than 0");
 		}
-		return "listapp";
+		return "redirect:listapp";
 	}
 
 }

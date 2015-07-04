@@ -32,7 +32,7 @@ public class CreateAppController extends SafeController {
 			throw new ValidateException("\"name\" and \"content\" are obligatory");
 		}
 		
-		return "listapp";
+		return "redirect:listapp";
 	}
 	
 	@RequestMapping(value = "/createappform", method = RequestMethod.GET)

@@ -26,12 +26,13 @@ public class VerifyAppController extends SafeController {
 	public String verifyApp(@RequestParam Integer id) throws SystemException {
 		logger.log(Level.INFO, "Execute method: verifyApp");
 		
+		System.out.println("---------------------------------===id " + id);
 		if(id != null && id >= 0 && applicationService.canVerify(id)) {
 			applicationService.verifyApplication(id);
 		} else {
 			throw new ValidateException("\"id\" parameter must be greater than 0");
 		}
-		return "listapp";
+		return "redirect:listapp";
 	}
 
 }

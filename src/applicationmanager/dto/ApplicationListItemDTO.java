@@ -7,6 +7,7 @@ public class ApplicationListItemDTO {
 	private Integer id;
 	private String name;
 	private Integer state;
+	private String stateText;
 	private Date modifityDate;
 	private boolean canVerify;
 	private boolean canAccept;
@@ -74,6 +75,12 @@ public class ApplicationListItemDTO {
 	}
 	public void setCanEdit(boolean canEdit) {
 		this.canEdit = canEdit;
+	}
+	public String getStateText() {
+		return stateText;
+	}
+	public void setStateText(String stateText) {
+		this.stateText = stateText;
 	}
 
 }

@@ -31,7 +31,7 @@ public class RejectAppController extends SafeController {
 		} else {
 			throw new ValidateException("\"id\" parameter must be greater than 0 and \"reason\" parameter is obligatory");
 		}
-		return "listapp";
+		return "redirect:listapp";
 	}
 	
 	@RequestMapping(value = "/rejectappform", method = RequestMethod.GET)
