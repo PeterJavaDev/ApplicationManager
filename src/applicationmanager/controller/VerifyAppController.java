@@ -13,6 +13,11 @@ import applicationmanager.controller.exception.ValidateException;
 import applicationmanager.exception.SystemException;
 import applicationmanager.service.ApplicationService;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @Controller
 @RequestMapping("/verifyapp")
 public class VerifyAppController extends SafeController {

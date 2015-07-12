@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class IdContentBean {
 	
 	@NotNull

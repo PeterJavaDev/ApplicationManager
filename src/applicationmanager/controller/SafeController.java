@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import applicationmanager.controller.exception.ValidateException;
 import applicationmanager.exception.SystemException;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class SafeController {
 	
 	private final static Logger logger = Logger.getLogger(SafeController.class.getName());

@@ -16,6 +16,11 @@ import applicationmanager.dto.ApplicationListItemDTO;
 import applicationmanager.exception.SystemException;
 import applicationmanager.service.ApplicationService;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @ContextConfiguration(locations = { "file:WebContent/WEB-INF/spring-servlet.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ApplicationServiceTests {

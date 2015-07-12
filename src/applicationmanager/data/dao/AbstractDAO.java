@@ -1,9 +1,7 @@
 package applicationmanager.data.dao;
 
-import java.util.Arrays;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,6 +13,11 @@ import javax.persistence.TransactionRequiredException;
 
 import applicationmanager.data.exception.DatabaseException;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class AbstractDAO<T> {
 	
 	private static EntityManagerFactory entityManagerFactory;

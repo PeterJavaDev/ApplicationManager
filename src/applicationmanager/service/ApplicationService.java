@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import applicationmanager.data.dao.AbstractDAO;
 import applicationmanager.data.dao.ApplicationDAO;
 import applicationmanager.data.entity.ApplicationEntity;
 import applicationmanager.data.exception.DatabaseException;
@@ -14,6 +13,11 @@ import applicationmanager.dto.ApplicationDTO;
 import applicationmanager.dto.ApplicationListItemDTO;
 import applicationmanager.exception.SystemException;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @Service
 public class ApplicationService {
 

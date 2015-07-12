@@ -18,6 +18,11 @@ import applicationmanager.controller.exception.ValidateException;
 import applicationmanager.exception.SystemException;
 import applicationmanager.service.ApplicationService;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @Controller
 public class DeleteAppController extends SafeController {
 

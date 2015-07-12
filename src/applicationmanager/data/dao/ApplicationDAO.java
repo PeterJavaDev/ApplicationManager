@@ -1,6 +1,5 @@
 package applicationmanager.data.dao;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,12 @@ import javax.persistence.TransactionRequiredException;
 import applicationmanager.data.entity.ApplicationEntity;
 import applicationmanager.data.exception.DatabaseException;
 
-public class ApplicationDAO extends AbstractDAO {
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
+public class ApplicationDAO extends AbstractDAO<ApplicationEntity> {
 	
 	public ApplicationDAO() {
 		super(ApplicationEntity.class);

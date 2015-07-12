@@ -2,6 +2,11 @@ package applicationmanager.dto;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class ApplicationDTO {
 	
 	private Integer id;

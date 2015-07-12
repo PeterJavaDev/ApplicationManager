@@ -16,6 +16,11 @@ import applicationmanager.controller.bean.NameContentBean;
 import applicationmanager.exception.SystemException;
 import applicationmanager.service.ApplicationService;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @Controller
 public class CreateAppController extends SafeController {
 	

@@ -2,6 +2,11 @@ package applicationmanager.data.exception;
 
 import applicationmanager.exception.SystemException;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class DatabaseException extends SystemException {
 	
 	/**

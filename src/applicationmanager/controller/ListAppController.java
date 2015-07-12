@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import applicationmanager.controller.exception.ValidateException;
 import applicationmanager.dto.ApplicationListItemDTO;
 import applicationmanager.exception.SystemException;
 import applicationmanager.service.ApplicationService;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 @Controller
 public class ListAppController extends SafeController {
 

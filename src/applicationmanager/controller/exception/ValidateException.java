@@ -2,6 +2,11 @@ package applicationmanager.controller.exception;
 
 import applicationmanager.exception.SystemException;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class ValidateException extends SystemException {
 	
 	/**

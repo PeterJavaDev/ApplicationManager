@@ -1,5 +1,10 @@
 package applicationmanager.exception;
 
+/**
+ * 
+ * @author Piotr Paj¹k
+ *
+ */
 public class SystemException extends Exception {
 	
 	/**
