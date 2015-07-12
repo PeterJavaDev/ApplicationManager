@@ -3,6 +3,7 @@ package applicationmanager.data.dao;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,6 +35,10 @@ public class AbstractDAO<T> {
         entityManagerFactory = Persistence.createEntityManagerFactory("appManagerPU");
     }
 	
+	public static void setup(String presistanceUnit) {
+        entityManagerFactory = Persistence.createEntityManagerFactory(presistanceUnit);
+    }
+	
 	protected static EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();
 	}
@@ -48,8 +53,8 @@ public class AbstractDAO<T> {
 			returnList = q.getResultList();
 			em.getTransaction().commit();
 		} catch (RollbackException re) {
-			System.out.println(re.getMessage());
-			System.out.println(Arrays.toString(re.getStackTrace()));
+			re.printStackTrace();
+			throw new DatabaseException(re.getMessage());
 		} catch (IllegalStateException ise) {
 			ise.printStackTrace();
 			throw new DatabaseException(ise.getMessage());
@@ -87,8 +92,8 @@ public class AbstractDAO<T> {
 			Query q = select.createQuery(em);
 			returnLong = (Long)q.getSingleResult();
 		} catch (RollbackException re) {
-			System.out.println(re.getMessage());
-			System.out.println(Arrays.toString(re.getStackTrace()));
+			re.printStackTrace();
+			throw new DatabaseException(re.getMessage());
 		} catch (IllegalStateException ise) {
 			ise.printStackTrace();
 			throw new DatabaseException(ise.getMessage());
@@ -126,8 +131,8 @@ public class AbstractDAO<T> {
             entity = em.find(baseClass, id);
             em.getTransaction().commit();
         } catch (RollbackException re) {
-			System.out.println(re.getMessage());
-			System.out.println(Arrays.toString(re.getStackTrace()));
+        	re.printStackTrace();
+			throw new DatabaseException(re.getMessage());
 		} catch (IllegalStateException ise) {
 			ise.printStackTrace();
 			throw new DatabaseException(ise.getMessage());
@@ -164,8 +169,8 @@ public class AbstractDAO<T> {
             em.persist(entity);
             em.getTransaction().commit();
         } catch (RollbackException re) {
-			System.out.println(re.getMessage());
-			System.out.println(Arrays.toString(re.getStackTrace()));
+        	re.printStackTrace();
+			throw new DatabaseException(re.getMessage());
 		} catch (IllegalStateException ise) {
 			ise.printStackTrace();
 			throw new DatabaseException(ise.getMessage());
@@ -176,6 +181,9 @@ public class AbstractDAO<T> {
 			tre.printStackTrace();
 			throw new DatabaseException(tre.getMessage());
 		} catch (Exception ex) {
+			ex.printStackTrace();
+			throw new DatabaseException(ex.getMessage());
+		} catch (Error ex) {
 			ex.printStackTrace();
 			throw new DatabaseException(ex.getMessage());
 		} finally {

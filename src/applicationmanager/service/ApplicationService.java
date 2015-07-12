@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import applicationmanager.data.dao.AbstractDAO;
 import applicationmanager.data.dao.ApplicationDAO;
 import applicationmanager.data.entity.ApplicationEntity;
 import applicationmanager.data.exception.DatabaseException;
@@ -16,7 +17,7 @@ import applicationmanager.exception.SystemException;
 @Service
 public class ApplicationService {
 
-	public final static int MAX_ON_PAGE = 4;
+	public final static int MAX_ON_PAGE = 10;
 
 	private final static int CREATED = 1;
 	private final static int VERIFIED = 2;
@@ -99,7 +100,6 @@ public class ApplicationService {
 	}
 	
 	public boolean canVerify(final int id) throws SystemException {
-		System.out.println("---------------------------------aaa id " + id);
 		ApplicationDTO applicationDTO = getApplication(id);
 		return isVerifyStatus(applicationDTO.getState());
 	}
@@ -166,7 +166,7 @@ public class ApplicationService {
 	
 	public boolean canEdit(final int id) throws SystemException {
 		ApplicationDTO applicationDTO = getApplication(id);
-		return isRejectStatus(applicationDTO.getState());
+		return isEditStatus(applicationDTO.getState());
 	}
 	
 	private boolean isEditStatus(final int state) {
@@ -189,6 +189,7 @@ public class ApplicationService {
 		try {
 			applicationDAO.create(applicationEntity);
 		} catch (DatabaseException e) {
+			System.out.println("-------------------------SystemException");
 			throw new SystemException();
 		}
 		return true;

@@ -5,6 +5,10 @@
 <title>Applications list</title>
 <link rel="stylesheet" type="text/css" media="all"
 	href="css/style_1.0.css" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="css/jquery.dataTables.css" />
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
@@ -17,19 +21,19 @@
 		<main id="center" class="column">
 
 		<h1>Applications list</h1>
-		
-		<form action="#" th:action="@{/listapp}" method="get">
-			<div>
+
+			<div id="nameLabel">
 				<b>Name:</b>
 			</div>
-			<div>
-				<input type="text" name="name" />
+			<div id="nameInput">
+				<input type="text" id="p_name" />
 			</div>
-			<div>
+			<div id="stateLabel">
 				<b>State:</b>
 			</div>
 			<div>
-				<select name="state">
+				<select id="p_state" >
+					<option value="">All</option>
 					<option value="1">Created</option>
 					<option value="2">Verified</option>
 					<option value="3">Accepted</option>
@@ -38,52 +42,55 @@
 					<option value="6">Rejected</option>
 				</select>
 			</div>
-			<button type="submit" style="margin-top: 10px;">Find</button>
-		</form>
-		
-		<table class="apptable">
-			<tr>
-				<th>Name</th>
-				<th>State</th>
-				<th>Modify time</th>
-				<th>Verify</th>
-				<th>Publish</th>
-				<th>Edit</th>
-				<th>Delete</th>
-				<th>Reject</th>
-			</tr>
-			<tr th:each="appItem : ${applicationListItemList}">
-				<td th:text="${appItem.name}">-</td>
-				<td th:text="${appItem.stateText}">-</td>
-				<td th:text="${appItem.modifityDate}">-</td>
-				<td><span th:if="${appItem.canVerify}"><a th:href="@{|verifyapp?id=${appItem.id}|}">Verify</a></span></td>
-				<td><span th:if="${appItem.canPublish}"><a th:href="@{|editappform?id=${appItem.id}|}">Publish</a></span></td>
-				<td><span th:if="${appItem.canEdit}"><a th:href="@{|editappform?id=${appItem.id}|}">Edit</a></span></td>
-				<td><span th:if="${appItem.canDelete}"><a th:href="@{|deleteappform?id=${appItem.id}|}">Delete</a></span></td>
-				<td><span th:if="${appItem.canReject}"><a th:href="@{|rejectappform?id=${appItem.id}|}">Reject</a></span></td>
-			</tr>
+
+		<table id="apptable" class="cell-border" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>State</th>
+					<th>Modify time</th>
+					<th>Verify</th>
+					<th>Accept</th>
+					<th>Publish</th>
+					<th>Edit</th>
+					<th>Delete</th>
+					<th>Reject</th>
+				</tr>
+			</thead>
 		</table>
-		<div>
-			<div style="float: left; width: 70px; height: 20px">
-				<div th:if="${pageNumber > 1}">
-					<a th:href="@{|listapp?pageNumber=${previousPage}&amp;name=${name}&amp;state=${state}|}">previous</a>
-				</div>
-			</div>
-			<div th:text="${pageNumber}"
-				style="float: left; width: 20px; padding-left: 5px"></div>
-			<div style="float: left">/</div>
-			<div th:text="${pageCount}"
-				style="float: left; width: 30px; padding-left: 5px"></div>
-			<div th:if="${pageNumber &lt; pageCount}" style="float: left">
-				<a th:href="@{|listapp?pageNumber=${nextPage}&amp;name=${name}&amp;state=${state}|}">next</a>
-			</div>
-		</div>
 
 		</main>
 
 		<div th:include="leftcolumn :: leftcolumn"></div>
 
 	</div>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#apptable').dataTable({
+				"searching" : false,
+				"ordering" : false,
+				"info" : false,
+				"processing" : true,
+				"serverSide" : true,
+				"ajax" : {
+					"url" : "gettableapppage",
+					"data" : function(d) {
+						d.name = $('#p_name').val();
+						d.state = $('#p_state').val();
+					}
+				}
+			});
+		});
+		
+		$('#p_name').keyup(function() {
+			var apptable = $('#apptable').DataTable();
+			apptable.ajax.reload();
+		});
+		
+		$('#p_state').change(function() {
+			var apptable = $('#apptable').DataTable();
+			apptable.ajax.reload();
+		});
+	</script>
 </body>
 </html>

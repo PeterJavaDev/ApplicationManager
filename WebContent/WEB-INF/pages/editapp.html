@@ -22,14 +22,15 @@
 			<b>Name:</b> <span th:text="${applicationDTO.name}"></span>
 		</div>
 
-		<form action="#" th:action="@{/editapp}" method="post">
+		<form action="#" th:action="@{/editapp}" th:object="${idContentBean}" method="post">
 			<div>
 				<b>Content:</b>
 			</div>
 			<div>
-				<textarea name="content" th:text="${applicationDTO.content}"></textarea>
+				<textarea name="content" th:field="*{content}" th:text="${applicationDTO.content}"></textarea>
 			</div>
-			<input type="hidden" name="id" th:value="${applicationDTO.id}" />
+			<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="validationError"></div>
+			<input type="hidden" name="id" th:value="${applicationDTO.id}" th:field="*{id}" />
 			<button type="submit" style="margin-top: 10px;">Save</button>
 		</form>
 		</main>

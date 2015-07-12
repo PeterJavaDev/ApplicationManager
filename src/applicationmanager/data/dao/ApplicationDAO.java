@@ -26,7 +26,7 @@ public class ApplicationDAO extends AbstractDAO {
             @Override
             public Query createQuery(EntityManager em) {
             	Query query = em.createNamedQuery("ApplicationEntity.findList");
-            	query.setParameter("name", (name == null ? "%" : name));
+            	query.setParameter("name", (name == null ? "%" : name + "%"));
             	query.setParameter("state", (state == null ? 0 : state));
             	query.setMaxResults(limit);
         		query.setFirstResult(offset);
@@ -69,8 +69,8 @@ public class ApplicationDAO extends AbstractDAO {
             em.merge(applicationEntity);
             em.getTransaction().commit();
         } catch (RollbackException re) {
-			System.out.println(re.getMessage());
-			System.out.println(Arrays.toString(re.getStackTrace()));
+        	re.printStackTrace();
+        	throw new DatabaseException(re.getMessage());
 		} catch (IllegalStateException ise) {
 			ise.printStackTrace();
 			throw new DatabaseException(ise.getMessage());

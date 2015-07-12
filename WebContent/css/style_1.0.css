@@ -104,28 +104,29 @@ nav ul a {
 	padding-top: 1em;
 }
 
+.validationError {
+	color: red;
+}
+
 /* Table */
-table.apptable {
-	font-family: verdana, arial, sans-serif;
-	font-size: 11px;
-	color: #333333;
-	border-width: 1px;
-	border-color: #a9c6c9;
-	border-collapse: collapse;
+.tableoption {
+	text-align: center;
 }
 
-table.apptable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #a9c6c9;
+/* Table filter */
+#nameLabel {
+	float:left;
+	margin-right: 5px;
 }
 
-table.apptable td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #a9c6c9;
+#nameInput {
+	float:left;
+	margin-right: 25px;
+}
+
+#stateLabel {
+	float:left;
+	margin-right: 5px;
 }
 
 /* Forms */

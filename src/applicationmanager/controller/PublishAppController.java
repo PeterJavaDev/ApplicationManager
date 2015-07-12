@@ -29,7 +29,7 @@ public class PublishAppController extends SafeController {
 		if(id != null && id >= 0 && applicationService.canPublish(id)) {
 			applicationService.publishApplication(id);
 		} else {
-			throw new ValidateException("\"id\" parameter must be greater than 0");
+			throw new ValidateException("\"id\" parameter is obligatory and must be greater than 0");
 		}
 		return "redirect:listapp";
 	}

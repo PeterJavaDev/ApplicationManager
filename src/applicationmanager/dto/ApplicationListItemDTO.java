@@ -82,5 +82,45 @@ public class ApplicationListItemDTO {
 	public void setStateText(String stateText) {
 		this.stateText = stateText;
 	}
+	
+	public String[] getTableArray() {
+		String[] cells = new String[9];
+		
+		cells[0] = name;
+		cells[1] = stateText;
+		cells[2] = modifityDate.toString();
+		if (canVerify) {
+			cells[3] = "<a href=\"verifyapp?id=" + id + "\">Verify</a>";
+		} else {
+			cells[3] = "";
+		}
+		if (canAccept) {
+			cells[4] = "<a href=\"acceptapp?id=" + id + "\">Accept</a>";
+		} else {
+			cells[4] = "";
+		}
+		if (canPublish) {
+			cells[5] = "<a href=\"publishapp?id=" + id + "\">Publish</a>";
+		} else {
+			cells[5] = "";
+		}
+		if (canEdit) {
+			cells[6] = "<a href=\"editappform?id=" + id + "\">Edit</a>";
+		} else {
+			cells[6] = "";
+		}
+		if (canDelete) {
+			cells[7] = "<a href=\"deleteappform?id=" + id + "\">Delete</a>";
+		} else {
+			cells[7] = "";
+		}
+		if (canReject) {
+			cells[8] = "<a href=\"rejectappform?id=" + id + "\">Reject</a>";
+		} else {
+			cells[8] = "";
+		}
+		
+		return cells;
+	}
 
 }

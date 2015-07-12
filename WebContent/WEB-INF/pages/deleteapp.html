@@ -22,18 +22,19 @@
 			<b>Name:</b> <span th:text="${applicationDTO.name}"></span>
 		</div>
 		<div>
-			<b>Content:</b>
+			<b>Reason:</b>
 		</div>
 		<div th:text="${applicationDTO.content}" class="contentStatic"></div>
 
-		<form action="#" th:action="@{/deleteapp}" method="post">
+		<form action="#" th:action="@{/deleteapp}" th:object="${idReasonBean}" method="post">
 			<div>
 				<b>Reason:</b>
 			</div>
 			<div>
-				<textarea name="reason"></textarea>
+				<textarea name="reason" th:field="*{reason}"></textarea>
 			</div>
-			<input type="hidden" name="id" th:value="${applicationDTO.id}" />
+			<div th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}" class="validationError"></div>
+			<input type="hidden" name="id" th:field="*{id}" />
 			<button type="submit" style="margin-top: 10px;">Delete</button>
 		</form>
 		</main>

@@ -30,9 +30,9 @@ public class AcceptAppController extends SafeController {
 		if(id != null && id >= 0 && applicationService.canAccept(id)) {
 			applicationService.acceptApplication(id);
 		} else {
-			throw new ValidateException("\"id\" parameter must be greater than 0");
+			throw new ValidateException("\"id\" parameter is obligatory and must be greater than 0");
 		}
-		return "listapp";
+		return "redirect:listapp";
 	}
 
 }
